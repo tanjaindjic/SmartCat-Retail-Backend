@@ -18,7 +18,7 @@ public class Shop {
     @ManyToOne
     @JsonBackReference
     private Territory territory;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Employee> employees;
 
     public Shop() {

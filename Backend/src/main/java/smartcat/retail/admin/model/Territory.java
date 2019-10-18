@@ -13,7 +13,7 @@ public class Territory {
     private String city;
     private String postal;
     private String country;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Shop> shops;
 
     public Territory() {
