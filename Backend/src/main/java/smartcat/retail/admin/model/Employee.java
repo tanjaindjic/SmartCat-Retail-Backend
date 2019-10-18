@@ -14,7 +14,7 @@ public class Employee {
      private String firstName;
     @Column(name = "lastname")
      private String lastName;
-     private int age;
+     private String email;
      private String position;
      @ManyToOne
      @JsonBackReference
@@ -22,10 +22,10 @@ public class Employee {
 
     public Employee() {}
 
-    public Employee(String firstName, String lastName, int age, String position, Shop shop) {
+    public Employee(String firstName, String lastName, String email, String position, Shop shop) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
+        this.email = email;
         this.position = position;
         this.shop = shop;
     }
@@ -54,12 +54,12 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPosition() {

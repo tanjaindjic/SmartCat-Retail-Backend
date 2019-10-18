@@ -18,18 +18,18 @@ values(50000, 'PCLand', 'Jasz u. 71', '+36568002585', 30000);
 insert into shop (id, name, address, phone, territory_id)
 values(60000, 'MagiComp', 'Bajcsy-Zsilinszky u. 60', '+361828205463', 30000);
 
-insert into employee (id, firstName, lastName, age, position, shop_id)
-values(10000, 'Jovana', 'Ilic', 29, 'register', 10000);
-insert into employee (id, firstName, lastName, age, position, shop_id)
-values(20000, 'Milos', 'Petrovic', 34, 'customer support', 20000);
-insert into employee (id, firstName, lastName, age, position, shop_id)
-values(30000, 'Ben', 'Fischer', 16, 'tech support', 30000);
-insert into employee (id, firstName, lastName, age, position, shop_id)
-values(40000, 'Jonas', 'Meyer', 37, 'manager', 40000);
-insert into employee (id, firstName, lastName, age, position, shop_id)
-values(50000, 'Adrienn', 'Tot', 33, 'advertising', 50000);
-insert into employee (id, firstName, lastName, age, position, shop_id)
-values(60000, 'Marko', 'Horvat', 29, 'tech support', 60000);
+insert into employee (id, firstName, lastName, email, position, shop_id)
+values(10000, 'Jovana', 'Ilic', 'jovana@smartcat.io', 'register', 10000);
+insert into employee (id, firstName, lastName, email, position, shop_id)
+values(20000, 'Milos', 'Petrovic', 'milos@smartcat.io', 'customer support', 20000);
+insert into employee (id, firstName, lastName, email, position, shop_id)
+values(30000, 'Ben', 'Fischer', 'ben@smartcat.io', 'tech support', 30000);
+insert into employee (id, firstName, lastName, email, position, shop_id)
+values(40000, 'Jonas', 'Meyer', 'jonas@smartcat.io', 'manager', 40000);
+insert into employee (id, firstName, lastName, email, position, shop_id)
+values(50000, 'Adrienn', 'Tot', 'adrienn@smartcat.io', 'advertising', 50000);
+insert into employee (id, firstName, lastName, email, position, shop_id)
+values(60000, 'Marko', 'Horvat', 'marko@smartcat.io', 'tech support', 60000);
 
 insert into territory_shops (territory_id, shops_id) values (10000,10000);
 insert into territory_shops (territory_id, shops_id) values (10000,20000);
