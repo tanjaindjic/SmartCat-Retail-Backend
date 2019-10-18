@@ -29,7 +29,7 @@ values(40000, 'Jonas', 'Meyer', 37, 'manager', 40000);
 insert into employee (id, firstName, lastName, age, position, shop_id)
 values(50000, 'Adrienn', 'Tot', 33, 'advertising', 50000);
 insert into employee (id, firstName, lastName, age, position, shop_id)
-values(6000, 'Marko', 'Horvat', 29, 'tech support', 60000);
+values(60000, 'Marko', 'Horvat', 29, 'tech support', 60000);
 
 insert into territory_shops (territory_id, shops_id) values (10000,10000);
 insert into territory_shops (territory_id, shops_id) values (10000,20000);
