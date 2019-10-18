@@ -35,4 +35,9 @@ public class TerritoryController {
         return updatedTerritory != null ? ResponseEntity.ok(updatedTerritory) : ResponseEntity.badRequest().body("Territory with a given ID: " + id + " was not updated.");
     }
 
+    @DeleteMapping(value = "/{id}")
+    public void deleteTerritory(@PathVariable long id){
+        territoryService.deleteTerritory(id);
+    }
+
 }

@@ -32,4 +32,8 @@ public class TerritoryService {
         else return null;
 
     }
+
+    public void deleteTerritory(long id) {
+        territoryRepository.deleteById(id);
+    }
 }
