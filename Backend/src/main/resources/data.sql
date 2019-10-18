@@ -19,17 +19,17 @@ insert into shop (id, name, address, phone, territory_id)
 values(60000, 'MagiComp', 'Bajcsy-Zsilinszky u. 60', '+361828205463', 30000);
 
 insert into employee (id, firstName, lastName, age, position, shop_id)
-values(1, 'Jovana', 'Ilic', 29, 'register', 10000);
+values(10000, 'Jovana', 'Ilic', 29, 'register', 10000);
 insert into employee (id, firstName, lastName, age, position, shop_id)
-values(2, 'Milos', 'Petrovic', 34, 'customer support', 20000);
+values(20000, 'Milos', 'Petrovic', 34, 'customer support', 20000);
 insert into employee (id, firstName, lastName, age, position, shop_id)
-values(3, 'Ben', 'Fischer', 16, 'tech support', 30000);
+values(30000, 'Ben', 'Fischer', 16, 'tech support', 30000);
 insert into employee (id, firstName, lastName, age, position, shop_id)
-values(4, 'Jonas', 'Meyer', 37, 'manager', 40000);
+values(40000, 'Jonas', 'Meyer', 37, 'manager', 40000);
 insert into employee (id, firstName, lastName, age, position, shop_id)
-values(5, 'Adrienn', 'Tot', 33, 'advertising', 50000);
+values(50000, 'Adrienn', 'Tot', 33, 'advertising', 50000);
 insert into employee (id, firstName, lastName, age, position, shop_id)
-values(6, 'Marko', 'Horvat', 29, 'tech support', 60000);
+values(6000, 'Marko', 'Horvat', 29, 'tech support', 60000);
 
 insert into territory_shops (territory_id, shops_id) values (10000,10000);
 insert into territory_shops (territory_id, shops_id) values (10000,20000);
@@ -38,9 +38,9 @@ insert into territory_shops (territory_id, shops_id) values (20000,40000);
 insert into territory_shops (territory_id, shops_id) values (30000,50000);
 insert into territory_shops (territory_id, shops_id) values (30000,60000);
 
-insert into shop_employees (shop_id, employees_id) values (10000,1);
-insert into shop_employees (shop_id, employees_id) values (20000,2);
-insert into shop_employees (shop_id, employees_id) values (30000,3);
-insert into shop_employees (shop_id, employees_id) values (40000,4);
-insert into shop_employees (shop_id, employees_id) values (50000,5);
-insert into shop_employees (shop_id, employees_id) values (60000,6);
+insert into shop_employees (shop_id, employees_id) values (10000,10000);
+insert into shop_employees (shop_id, employees_id) values (20000,20000);
+insert into shop_employees (shop_id, employees_id) values (30000,30000);
+insert into shop_employees (shop_id, employees_id) values (40000,40000);
+insert into shop_employees (shop_id, employees_id) values (50000,50000);
+insert into shop_employees (shop_id, employees_id) values (60000,60000);

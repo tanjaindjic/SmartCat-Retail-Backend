@@ -46,10 +46,10 @@ public class ShopService {
     public Shop updateShop(long id, ShopDTO s) {
         Shop oldShop = getShop(id);
         long oldTerritoryId = oldShop.getTerritory().getId();
+        Territory oldTerritory = territoryService.getTerritory(oldTerritoryId);
         shopRepository.save(s.shop);
         if(oldShop != null) {
             if(oldTerritoryId != s.territoryId){
-                Territory oldTerritory = territoryService.getTerritory(oldTerritoryId);
                 oldTerritory.getShops().remove(oldShop);
                 territoryService.updateTerritory(oldTerritoryId, oldTerritory);
 
@@ -58,10 +58,16 @@ public class ShopService {
                 territoryService.updateTerritory(s.territoryId, newTerritory);
 
                 oldShop.setTerritory(newTerritory);
-                return shopRepository.save(oldShop);
+            }else{
+                oldShop.setTerritory(oldTerritory);
             }
+            return shopRepository.save(oldShop);
         }
         return null;
+    }
+
+    public Shop saveShop(Shop s){
+        return shopRepository.save(s);
     }
 
     public void deleteShop(long id){
