@@ -23,7 +23,7 @@ public class EmployeeController {
     public ResponseEntity getEmployee(@PathVariable long id){
         Employee employee = employeeService.getEmployee(id);
         if(employee != null)
-            return ResponseEntity.ok(new EmployeeDTO(employee, employee.getShop().getId()));
+            return ResponseEntity.ok(new EmployeeDTO(employee));
         return employee != null ? ResponseEntity.ok(employee) : ResponseEntity.badRequest().body("Employee with a given ID: " + id + " was not found.");
     }
 

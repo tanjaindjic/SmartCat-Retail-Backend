@@ -29,7 +29,7 @@ public class ShopController {
     public ResponseEntity getShop(@PathVariable long id){
         Shop shop = shopService.getShop(id);
         if(shop != null)
-            return ResponseEntity.ok(new ShopDTO(shop, shop.getTerritory().getId()));
+            return ResponseEntity.ok(new ShopDTO(shop));
         return ResponseEntity.badRequest().body("Shop with a given ID: " + id + " was not found");
     }
 
@@ -47,9 +47,13 @@ public class ShopController {
     @DeleteMapping(value = "/{id}")
     public void deleteShop(@PathVariable long id){
         Shop shop = shopService.getShop(id);
+        if(shop == null)
+            return;
         Territory territory = shop.getTerritory();
         territory.getShops().remove(shop);
         territoryService.updateTerritory(territory.getId(), territory);
+        shop.setTerritory(null);
+        shopService.saveShop(shop);
         shopService.deleteShop(id);
     }
 

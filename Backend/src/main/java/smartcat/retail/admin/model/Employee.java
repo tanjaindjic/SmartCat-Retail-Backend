@@ -1,6 +1,7 @@
 package smartcat.retail.admin.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import smartcat.retail.admin.model.dto.EmployeeDTO;
 
 import javax.persistence.*;
 
@@ -28,6 +29,13 @@ public class Employee {
         this.email = email;
         this.position = position;
         this.shop = shop;
+    }
+
+    public Employee(EmployeeDTO dto) {
+        this.firstName = dto.firstName;
+        this.lastName = dto.lastName;
+        this.email = dto.email;
+        this.position = dto.position;
     }
 
     public long getId() {
@@ -76,6 +84,13 @@ public class Employee {
 
     public void setShop(Shop shop) {
         this.shop = shop;
+    }
+
+    public void updateInfo(EmployeeDTO e) {
+        this.firstName = e.firstName;
+        this.lastName = e.lastName;
+        this.email = e.email;
+        this.position = e.position;
     }
 }
 

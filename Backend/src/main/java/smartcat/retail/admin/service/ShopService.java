@@ -31,9 +31,9 @@ public class ShopService {
     }
 
     public Shop createShop(ShopDTO s){
-        Territory t = territoryService.getTerritory(s.territoryId);
+        Territory t = territoryService.getTerritory(s.territory);
         if(t != null){
-            Shop newShop = shopRepository.save(s.shop);
+            Shop newShop = shopRepository.save(new Shop(s));
             t.getShops().add(newShop);
             territoryService.updateTerritory(t.getId(), t);
             newShop.setTerritory(t);
@@ -45,25 +45,22 @@ public class ShopService {
 
     public Shop updateShop(long id, ShopDTO s) {
         Shop oldShop = getShop(id);
+        if(oldShop == null)
+            return null;
         long oldTerritoryId = oldShop.getTerritory().getId();
         Territory oldTerritory = territoryService.getTerritory(oldTerritoryId);
-        shopRepository.save(s.shop);
-        if(oldShop != null) {
-            if(oldTerritoryId != s.territoryId){
-                oldTerritory.getShops().remove(oldShop);
-                territoryService.updateTerritory(oldTerritoryId, oldTerritory);
+        oldShop.updateInfo(s);
+        if(oldTerritoryId != s.territory){
+            oldTerritory.getShops().remove(oldShop);
+            territoryService.updateTerritory(oldTerritoryId, oldTerritory);
 
-                Territory newTerritory = territoryService.getTerritory(s.territoryId);
-                newTerritory.getShops().add(oldShop);
-                territoryService.updateTerritory(s.territoryId, newTerritory);
+            Territory newTerritory = territoryService.getTerritory(s.territory);
+            newTerritory.getShops().add(oldShop);
+            territoryService.updateTerritory(s.territory, newTerritory);
 
-                oldShop.setTerritory(newTerritory);
-            }else{
-                oldShop.setTerritory(oldTerritory);
-            }
-            return shopRepository.save(oldShop);
+            oldShop.setTerritory(newTerritory);
         }
-        return null;
+        return shopRepository.save(oldShop);
     }
 
     public Shop saveShop(Shop s){

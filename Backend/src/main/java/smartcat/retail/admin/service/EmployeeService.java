@@ -27,10 +27,10 @@ public class EmployeeService {
     }
 
     public Employee createEmployee(EmployeeDTO e){
-        Shop shop = shopService.getShop(e.shopId);
+        Shop shop = shopService.getShop(e.shop);
         if(shop == null)
             return null;
-        Employee newEmployee = employeeRepository.save(e.employee);
+        Employee newEmployee = employeeRepository.save(new Employee(e));
         shop.getEmployees().add(newEmployee);
         shop = shopService.saveShop(shop);
         newEmployee.setShop(shop);
@@ -41,25 +41,23 @@ public class EmployeeService {
 
     public Employee updateEmployee(long id, EmployeeDTO e){
         Employee oldEmployee = getEmployee(id);
+        if(oldEmployee == null)
+            return null;
         long oldShopId = oldEmployee.getShop().getId();
         Shop oldShop = shopService.getShop(oldShopId);
-        employeeRepository.save(e.employee);
-        if(oldEmployee != null) {
-            if(oldShopId != e.shopId){
-                oldShop.getEmployees().remove(oldEmployee);
-                shopService.saveShop(oldShop);
+        oldEmployee.updateInfo(e);
+        if(oldShopId != e.shop){
+            oldShop.getEmployees().remove(oldEmployee);
+            shopService.saveShop(oldShop);
 
-                Shop newShop = shopService.getShop(e.shopId);
-                newShop.getEmployees().add(oldEmployee);
-                shopService.saveShop(newShop);
+            Shop newShop = shopService.getShop(e.shop);
+            newShop.getEmployees().add(oldEmployee);
+            shopService.saveShop(newShop);
 
-                oldEmployee.setShop(newShop);
-            }else{
-                oldEmployee.setShop(oldShop);
-            }
-            return employeeRepository.save(oldEmployee);
+            oldEmployee.setShop(newShop);
         }
-        return null;
+        return employeeRepository.save(oldEmployee);
+
     }
 
     public void deleteEmployee(long id){

@@ -1,8 +1,10 @@
 package smartcat.retail.admin.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import smartcat.retail.admin.model.dto.ShopDTO;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,6 +32,13 @@ public class Shop {
         this.phone = phone;
         this.territory = territory;
         this.employees = employees;
+    }
+
+    public Shop(ShopDTO dto){
+        this.name = dto.name;
+        this.address = dto.address;
+        this.phone = dto.phone;
+        this.employees = new ArrayList<>();
     }
 
     public long getId() {
@@ -78,5 +87,11 @@ public class Shop {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public void updateInfo(ShopDTO s) {
+        this.name = s.name;
+        this.address = s.address;
+        this.phone = s.phone;
     }
 }
