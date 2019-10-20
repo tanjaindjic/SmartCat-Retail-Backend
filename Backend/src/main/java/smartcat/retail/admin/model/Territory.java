@@ -10,9 +10,14 @@ public class Territory {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column( nullable = false )
     private String city;
+
     private String postal;
+
+    @Column( nullable = false )
     private String country;
+
     @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Shop> shops;
 

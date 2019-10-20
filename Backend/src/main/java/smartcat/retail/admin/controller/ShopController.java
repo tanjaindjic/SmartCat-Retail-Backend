@@ -10,6 +10,8 @@ import smartcat.retail.admin.model.dto.ShopDTO;
 import smartcat.retail.admin.service.ShopService;
 import smartcat.retail.admin.service.TerritoryService;
 
+import javax.validation.constraints.NotNull;
+
 @RestController
 @RequestMapping(value = "/shop")
 public class ShopController {
@@ -30,18 +32,20 @@ public class ShopController {
         Shop shop = shopService.getShop(id);
         if(shop != null)
             return ResponseEntity.ok(new ShopDTO(shop));
-        return ResponseEntity.badRequest().body("Shop with a given ID: " + id + " was not found");
+        return ResponseEntity.badRequest().body("Shop with a given ID: " + id + " was not found.");
     }
 
     @PostMapping
-    public ResponseEntity createShop(@RequestBody ShopDTO s){
+    public ResponseEntity createShop(@RequestBody @NotNull ShopDTO s){
         return ResponseEntity.ok(shopService.createShop(s));
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity updateShop(@PathVariable long id, @RequestBody ShopDTO s){
+    public ResponseEntity updateShop(@PathVariable long id, @RequestBody @NotNull ShopDTO s){
         Shop updatedShop = shopService.updateShop(id, s);
-        return updatedShop != null ? ResponseEntity.ok(updatedShop) : ResponseEntity.badRequest().body("Shop with a given ID: " + id + " was not updated.");
+        if(updatedShop != null)
+            return ResponseEntity.ok(updatedShop);
+        return ResponseEntity.badRequest().body("Shop with a given ID: " + id + " was not updated.");
     }
 
     @DeleteMapping(value = "/{id}")

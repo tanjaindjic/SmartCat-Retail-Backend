@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import smartcat.retail.admin.model.Territory;
 import smartcat.retail.admin.service.TerritoryService;
 
+import javax.validation.constraints.NotNull;
+
 @RestController
 @RequestMapping(value = "/territory")
 public class TerritoryController {
@@ -21,18 +23,22 @@ public class TerritoryController {
     @GetMapping(value = "/{id}")
     public ResponseEntity getTerritory(@PathVariable long id){
         Territory territory = territoryService.getTerritory(id);
-        return territory!=null ? ResponseEntity.ok(territory) : ResponseEntity.badRequest().body("Territory with a given ID: " + id + " was not found.");
+        if(territory != null)
+            return ResponseEntity.ok(territory);
+        return ResponseEntity.badRequest().body("Territory with a given ID: " + id + " was not found.");
     }
 
     @PostMapping
-    public ResponseEntity createTerritory(@RequestBody Territory t){
+    public ResponseEntity createTerritory(@RequestBody @NotNull Territory t){
         return ResponseEntity.ok(territoryService.createTerritory(t));
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity updateTerritory(@PathVariable long id, @RequestBody Territory t){
+    public ResponseEntity updateTerritory(@PathVariable long id, @RequestBody @NotNull Territory t){
         Territory updatedTerritory = territoryService.updateTerritory(id, t);
-        return updatedTerritory != null ? ResponseEntity.ok(updatedTerritory) : ResponseEntity.badRequest().body("Territory with a given ID: " + id + " was not updated.");
+        if(updatedTerritory != null)
+            return ResponseEntity.ok(updatedTerritory);
+        return ResponseEntity.badRequest().body("Territory with a given ID: " + id + " was not updated.");
     }
 
     @DeleteMapping(value = "/{id}")

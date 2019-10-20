@@ -14,8 +14,11 @@ public class Shop {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column( nullable = false )
     private String name;
+
     private String address;
+
     private String phone;
     @ManyToOne
     @JsonBackReference

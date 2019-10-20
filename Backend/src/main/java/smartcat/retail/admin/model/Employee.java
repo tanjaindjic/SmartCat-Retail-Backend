@@ -11,12 +11,17 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @Column(name = "firstname")
+
+    @Column(name = "firstname", nullable = false)
      private String firstName;
-    @Column(name = "lastname")
+
+    @Column(name = "lastname", nullable = false)
      private String lastName;
+
      private String email;
+
      private String position;
+
      @ManyToOne
      @JsonBackReference
      private Shop shop;
